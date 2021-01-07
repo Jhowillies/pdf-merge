@@ -58,4 +58,4 @@ After copying files run this:
 python pdf-merge.py
 ```
 
-The output should now be in the `output` folder and titled `results.pdf`
+The output should now be in the `output` folder and titled `output.pdf`
