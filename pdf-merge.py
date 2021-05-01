@@ -1,22 +1,14 @@
 #!/bin/env/python
-from PyPDF2 import PdfFileMerger
 import os
 
+from core import get_input_filenames
+from core import PDF_EXTENSIONS, INPUT_DIRECTORY, OUTPUT_DIRECTORY
+from core import merge_pdfs
+
 def main():
-    pdf_filenames = []
-    for directory, directories, files in os.walk('input'):
-        for filename in files:
-            file_path = os.path.join(directory, filename)
-            if file_path.endswith('.pdf'):
-                pdf_filenames.append(file_path)
-
-    merger = PdfFileMerger()
-
-    for pdf_file in pdf_filenames:
-        merger.append(pdf_file)
-
-    merger.write(os.path.join('output', 'output.pdf'))
-    merger.close()
+    pdf_filenames = get_input_filenames(INPUT_DIRECTORY, PDF_EXTENSIONS)
+    output_filename = os.path.join(OUTPUT_DIRECTORY, 'output.pdf')
+    merge_pdfs(pdf_filenames, output_filename)
 
 if __name__ == "__main__":
     main()
